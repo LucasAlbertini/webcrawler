@@ -1,0 +1,24 @@
+{
+  "name": "webcrawler",
+  "version": "1.0.0",
+  "description": "Project for webcrawler and HTTP basics implementation",
+  "homepage": "https://github.com/LucasAlbertini/webcrawler#readme",
+  "bugs": {
+    "url": "https://github.com/LucasAlbertini/webcrawler/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasAlbertini/webcrawler.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
