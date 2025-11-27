@@ -1,5 +1,30 @@
 const { JSDOM } = require('jsdom');
 
+async function crawlPage(currentUrl){
+    console.log(`actively crawling ${currentUrl}`);
+    try{
+        const resp = await fetch(currentUrl)
+        if(resp.status > 399){
+            console.log(`error in fetch with status code: ${resp.status} on page: ${currentUrl}`)
+            return
+        }
+        const contentType = resp.headers.get("content-type")
+        if(!contentType.includes("text/html")){
+            console.log(`non html response, content type: "${contentType}" on page: ${currentUrl}`)
+            return
+        }
+
+        console.log( await resp.text())
+        // const htmlBody = await resp.text()
+        // const newUrls = getUrlsFromHtml(htmlBody)
+        // console.log(newUrls);
+    } catch (err){
+        console.log(`error in fetch: "${err.message}" on page ${currentUrl}`)
+        return
+    }
+    // normalizedUrl = normal
+}
+
 function normalizeUrl(urlString) {
     const urlObject = new URL(urlString); //URL constructor already lowercase it all
     var hostName = `${urlObject.hostname}${urlObject.pathname}`;
@@ -8,8 +33,6 @@ function normalizeUrl(urlString) {
     }
     return hostName;
 }
-
-
 
 function getUrlsFromHtml(htmlBody, baseUrl) {
     const urls = [];
@@ -20,12 +43,11 @@ function getUrlsFromHtml(htmlBody, baseUrl) {
         if(element.href.startsWith('/')){
             url = baseUrl + element.href
         }
-        console.log(url)
         try{
             const normalizedUrl = normalizeUrl(url)
             urls.push(normalizedUrl);
-        }catch{
-            console.log(`Error with url: ${url}`)
+        }catch(err){
+            console.log(`Error ${err.message} with url: ${url}`)
         }
     });
     console.log(urls)
@@ -34,5 +56,6 @@ function getUrlsFromHtml(htmlBody, baseUrl) {
 
 module.exports = { 
     normalizeUrl,
-    getUrlsFromHtml
+    getUrlsFromHtml,
+    crawlPage
 };
