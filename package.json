@@ -18,7 +18,13 @@
     "start": "node main.js",
     "test": "jest"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "jsdom": "^24.0.0"
   }
 }
