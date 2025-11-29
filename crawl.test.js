@@ -35,8 +35,8 @@ test('getUrlsFromHtml', () => {
     </body>
 </html>
 `;
-    const inputUrl = 'api.boot.dev/v1/courses_rest_api/learn-http';
-    const expectedOutput = ["api.boot.dev/v1/courses_rest_api/learn-http"];
+    const inputUrl = 'https://api.boot.dev/v1/courses_rest_api/learn-http/';
+    const expectedOutput = ["https://api.boot.dev/v1/courses_rest_api/learn-http/"];
     const actualOutput = getUrlsFromHtml(inputHtml, inputUrl);
     expect(actualOutput).toStrictEqual(expectedOutput);
 });
@@ -54,7 +54,7 @@ test('getUrlsFromHtml relative', () => {
 </html>
 `;
     const inputUrl = 'https://api.boot.dev/v1/courses_rest_api/learn-http';
-    const expectedOutput = ["api.boot.dev/v1/courses_rest_api/learn-http/path"];
+    const expectedOutput = ["https://api.boot.dev/path/"];
     const actualOutput = getUrlsFromHtml(inputHtml, inputUrl);
     expect(actualOutput).toStrictEqual(expectedOutput);
 });
@@ -73,7 +73,7 @@ test('getUrlsFromHtml multiple', () => {
 </html>
 `;
     const inputUrl = 'https://api.boot.dev/v1/courses_rest_api/learn-http';
-    const expectedOutput = ["api.boot.dev/v1/courses_rest_api/learn-http/path", "api.boot.dev/v1/courses_rest_api/learn-http"];
+    const expectedOutput = ["https://api.boot.dev/path/", "https://api.boot.dev/v1/courses_rest_api/learn-http/"];
     const actualOutput = getUrlsFromHtml(inputHtml, inputUrl);
     expect(actualOutput).toStrictEqual(expectedOutput);
 });
