@@ -30,7 +30,7 @@ async function crawlPage(baseURL, currentURL, pages){
         const htmlBody = await resp.text()
         const nextURLs = getUrlsFromHtml(htmlBody, baseURL)
         for (const nextURL of nextURLs){
-            pages = await crawlPage(baseURL, nextURL, pages)
+            pages = await crawlPage(baseURL, nextURL, pages) // Never forget to add await into async functions
         };
 
     } catch (err){
